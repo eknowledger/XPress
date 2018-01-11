@@ -8,3 +8,8 @@ before_build:
 build:
   project: Eknowledger.Language.Xpress.sln
   verbosity: minimal
+
+test:
+  assemblies:
+    only:
+      - Eknowledger.Language.Xpress.Test.dll
