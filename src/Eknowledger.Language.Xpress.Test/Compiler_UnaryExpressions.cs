@@ -1,21 +1,14 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Eknowledger.Language.Xpress.Test
 {
-    [TestClass]
-    public class Compiler_UnaryExpressions
+    public class Compiler_UnaryExpressions : TestBase
     {
-        private static XpressCompiler _compiler;
-
-        [ClassInitialize]
-        public static void TestsInitialize(TestContext ctx)
-        {
-            _compiler = XpressCompiler.Default;
-        }
+        public Compiler_UnaryExpressions() : base() { }
 
 
-        [TestMethod]
+        [Fact]
         public void Compile_NegationOfBooleanFalseLiteral_ShouldCompileAndEvalTrue()
         {
             var code = "not false";
@@ -23,12 +16,12 @@ namespace Eknowledger.Language.Xpress.Test
             var compilationResult = _compiler.Compile(code);
             var result = compilationResult.Code(runtimeCtx);
 
-            Assert.IsTrue(compilationResult.Compiled);
-            Assert.IsFalse(compilationResult.Log.HasErrors);
-            Assert.IsTrue(result);
+            Assert.True(compilationResult.Compiled);
+            Assert.False(compilationResult.Log.HasErrors);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_NegationOfBooleanFalseVariable_ShouldCompileAndEvalTrue()
         {
             var code = "not x";
@@ -36,42 +29,42 @@ namespace Eknowledger.Language.Xpress.Test
             var compilationResult = _compiler.Compile(code);
             var result = compilationResult.Code(runtimeCtx);
 
-            Assert.IsTrue(compilationResult.Compiled);
-            Assert.IsFalse(compilationResult.Log.HasErrors);
-            Assert.IsTrue(result);
+            Assert.True(compilationResult.Compiled);
+            Assert.False(compilationResult.Log.HasErrors);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_NegationOfNull_ShouldFailCompile()
         {
             var code = "not null";
             var compilationResult = _compiler.Compile(code);
 
-            Assert.IsFalse(compilationResult.Compiled);
-            Assert.IsTrue(compilationResult.Log.HasErrors);
+            Assert.False(compilationResult.Compiled);
+            Assert.True(compilationResult.Log.HasErrors);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_NegationOfString_ShouldFailCompile()
         {
             var code = "not 'true'";
             var compilationResult = _compiler.Compile(code);
 
-            Assert.IsFalse(compilationResult.Compiled);
-            Assert.IsTrue(compilationResult.Log.HasErrors);
+            Assert.False(compilationResult.Compiled);
+            Assert.True(compilationResult.Log.HasErrors);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_NegationOfNumber_ShouldFailCompile()
         {
             var code = "not 10";
             var compilationResult = _compiler.Compile(code);
 
-            Assert.IsFalse(compilationResult.Compiled);
-            Assert.IsTrue(compilationResult.Log.HasErrors);
+            Assert.False(compilationResult.Compiled);
+            Assert.True(compilationResult.Log.HasErrors);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_NegationOfNonBooleanVariable_ShouldCompileAndRuntimeError()
         {
             var code = "not x";
@@ -89,22 +82,22 @@ namespace Eknowledger.Language.Xpress.Test
             }
 
 
-            Assert.IsTrue(compilationResult.Compiled);
-            Assert.IsFalse(compilationResult.Log.HasErrors);
-            Assert.IsNotNull(exception);
+            Assert.True(compilationResult.Compiled);
+            Assert.False(compilationResult.Log.HasErrors);
+            Assert.NotNull(exception);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_NegationOfBinaryExpression_ShouldFailCompile()
         {
             var code = "not (1+2)";
             var compilationResult = _compiler.Compile(code);
 
-            Assert.IsFalse(compilationResult.Compiled);
-            Assert.IsTrue(compilationResult.Log.HasErrors);
+            Assert.False(compilationResult.Compiled);
+            Assert.True(compilationResult.Log.HasErrors);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_NegationOfRelationalExpression_ShouldCompileAndEvalTrue()
         {
             var code = "not (9 gt 10)";
@@ -112,12 +105,12 @@ namespace Eknowledger.Language.Xpress.Test
             var compilationResult = _compiler.Compile(code);
             var result = compilationResult.Code(runtimeCtx);
 
-            Assert.IsTrue(compilationResult.Compiled);
-            Assert.IsFalse(compilationResult.Log.HasErrors);
-            Assert.IsTrue(result);
+            Assert.True(compilationResult.Compiled);
+            Assert.False(compilationResult.Log.HasErrors);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_NegationOfConditioanlExpression_ShouldCompileAndEvalTrue()
         {
             var code = "not ('a' eq 'b' and 9 gt 10)";
@@ -125,19 +118,19 @@ namespace Eknowledger.Language.Xpress.Test
             var compilationResult = _compiler.Compile(code);
             var result = compilationResult.Code(runtimeCtx);
 
-            Assert.IsTrue(compilationResult.Compiled);
-            Assert.IsFalse(compilationResult.Log.HasErrors);
-            Assert.IsTrue(result);
+            Assert.True(compilationResult.Compiled);
+            Assert.False(compilationResult.Log.HasErrors);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_NegationOfBinaryConcatStrings_ShouldFailCompile()
         {
             var code = "not ('a' + 'b')";
             var compilationResult = _compiler.Compile(code);
 
-            Assert.IsFalse(compilationResult.Compiled);
-            Assert.IsTrue(compilationResult.Log.HasErrors);
+            Assert.False(compilationResult.Compiled);
+            Assert.True(compilationResult.Log.HasErrors);
         }
     }
 }

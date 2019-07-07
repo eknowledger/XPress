@@ -1,20 +1,13 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Eknowledger.Language.Xpress.Test
 {
-    [TestClass]
-    public class Compiler_PrimaryExpressions
+    public class Compiler_PrimaryExpressions : TestBase
     {
-        private static XpressCompiler _compiler;
+        public Compiler_PrimaryExpressions() : base() { }
 
-        [ClassInitialize]
-        public static void TestsInitialize(TestContext ctx)
-        {
-            _compiler = XpressCompiler.Default;
-        }
-
-        [TestMethod]
+        [Fact]
         public void Compile_BooleanTrueExpression_ShouldCompileAndEvalTrue()
         {
             var code = "true";
@@ -22,12 +15,12 @@ namespace Eknowledger.Language.Xpress.Test
             var compilationResult = _compiler.Compile(code);
             var result = compilationResult.Code(runtimeCtx);
 
-            Assert.IsTrue(compilationResult.Compiled);
-            Assert.IsFalse(compilationResult.Log.HasErrors);
-            Assert.IsTrue(result);
+            Assert.True(compilationResult.Compiled);
+            Assert.False(compilationResult.Log.HasErrors);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_BooleanFalseExpression_ShouldCompileAndEvalFalse()
         {
             var code = "false";
@@ -35,43 +28,43 @@ namespace Eknowledger.Language.Xpress.Test
             var compilationResult = _compiler.Compile(code);
             var result = compilationResult.Code(runtimeCtx);
 
-            Assert.IsTrue(compilationResult.Compiled);
-            Assert.IsFalse(compilationResult.Log.HasErrors);
-            Assert.IsFalse(result);
+            Assert.True(compilationResult.Compiled);
+            Assert.False(compilationResult.Log.HasErrors);
+            Assert.False(result);
         }
 
 
-        [TestMethod]
+        [Fact]
         public void Compile_NullExpression_ShouldFailCompile()
         {
             var code = "null";
             var compilationResult = _compiler.Compile(code);
 
-            Assert.IsFalse(compilationResult.Compiled);
-            Assert.IsTrue(compilationResult.Log.HasErrors);
+            Assert.False(compilationResult.Compiled);
+            Assert.True(compilationResult.Log.HasErrors);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_StringTrueExpression_ShouldFailCompile()
         {
             var code = "'true'";
             var compilationResult = _compiler.Compile(code);
 
-            Assert.IsFalse(compilationResult.Compiled);
-            Assert.IsTrue(compilationResult.Log.HasErrors);
+            Assert.False(compilationResult.Compiled);
+            Assert.True(compilationResult.Log.HasErrors);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_NumericalExpression_ShouldFailCompile()
         {
             var code = "1";
             var compilationResult = _compiler.Compile(code);
 
-            Assert.IsFalse(compilationResult.Compiled);
-            Assert.IsTrue(compilationResult.Log.HasErrors);
+            Assert.False(compilationResult.Compiled);
+            Assert.True(compilationResult.Log.HasErrors);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_VariableDoesnotExists_ShouldCompileRuntimeErrorVariableNotFound()
         {
             var code = "x";
@@ -89,13 +82,13 @@ namespace Eknowledger.Language.Xpress.Test
             }
 
 
-            Assert.IsTrue(compilationResult.Compiled);
-            Assert.IsFalse(compilationResult.Log.HasErrors);
-            Assert.IsNotNull(exception);
-            Assert.AreEqual(exception.Message, "Variable [x] was not found.");
+            Assert.True(compilationResult.Compiled);
+            Assert.False(compilationResult.Log.HasErrors);
+            Assert.NotNull(exception);
+            Assert.Equal("Variable [x] was not found.", exception.Message);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_VariableInvalidType_ShouldCompileRuntimeErrorFormatException()
         {
             var code = "x";
@@ -114,13 +107,13 @@ namespace Eknowledger.Language.Xpress.Test
             }
 
 
-            Assert.IsTrue(compilationResult.Compiled);
-            Assert.IsFalse(compilationResult.Log.HasErrors);
-            Assert.IsNotNull(exception);
-            Assert.AreEqual(exception.Message, "String was not recognized as a valid Boolean.");
+            Assert.True(compilationResult.Compiled);
+            Assert.False(compilationResult.Log.HasErrors);
+            Assert.NotNull(exception);
+            Assert.Equal("String was not recognized as a valid Boolean.", exception.Message);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_VariableTypeBoolean_ShouldCompileAndEvalTrue()
         {
             var code = "x";
@@ -128,12 +121,12 @@ namespace Eknowledger.Language.Xpress.Test
             var compilationResult = _compiler.Compile(code);
             var result = compilationResult.Code(runtimeCtx);
 
-            Assert.IsTrue(compilationResult.Compiled);
-            Assert.IsFalse(compilationResult.Log.HasErrors);
-            Assert.IsTrue(result);
+            Assert.True(compilationResult.Compiled);
+            Assert.False(compilationResult.Log.HasErrors);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_BinaryOperatorPrecedence_ShouldCompileAndEvalTrue()
         {
             var code = "r eq x+2*2-4/2"; // ((x+(2*2))-(4/2))
@@ -141,12 +134,12 @@ namespace Eknowledger.Language.Xpress.Test
             var compilationResult = _compiler.Compile(code);
             var result = compilationResult.Code(runtimeCtx);
 
-            Assert.IsTrue(compilationResult.Compiled);
-            Assert.IsFalse(compilationResult.Log.HasErrors);
-            Assert.IsTrue(result);
+            Assert.True(compilationResult.Compiled);
+            Assert.False(compilationResult.Log.HasErrors);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_BinaryOperatorPrecedenceInvalid_ShouldCompileAndEvalFalse()
         {
             var code = "r eq x+2*2-4/2"; // ((x+(2*2))-(4/2))
@@ -154,12 +147,12 @@ namespace Eknowledger.Language.Xpress.Test
             var compilationResult = _compiler.Compile(code);
             var result = compilationResult.Code(runtimeCtx);
 
-            Assert.IsTrue(compilationResult.Compiled);
-            Assert.IsFalse(compilationResult.Log.HasErrors);
-            Assert.IsFalse(result);
+            Assert.True(compilationResult.Compiled);
+            Assert.False(compilationResult.Log.HasErrors);
+            Assert.False(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void Compile_BinaryOperatorPrecedenceWithParanetcise_ShouldCompileAndEvalTrue()
         {
             var code = "r eq (((x+1)*2)-4)/5";
@@ -167,9 +160,9 @@ namespace Eknowledger.Language.Xpress.Test
             var compilationResult = _compiler.Compile(code);
             var result = compilationResult.Code(runtimeCtx);
 
-            Assert.IsTrue(compilationResult.Compiled);
-            Assert.IsFalse(compilationResult.Log.HasErrors);
-            Assert.IsTrue(result);
+            Assert.True(compilationResult.Compiled);
+            Assert.False(compilationResult.Log.HasErrors);
+            Assert.True(result);
         }
 
     }
