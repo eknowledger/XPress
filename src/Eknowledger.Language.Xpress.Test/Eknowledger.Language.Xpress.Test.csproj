@@ -66,8 +66,9 @@
     <Compile Include="Compiler_PrimaryExpressions.cs" />
     <Compile Include="Compiler_RelationalExpressions.cs" />
     <Compile Include="Compiler_UnaryExpressions.cs" />
+    <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="TestBase.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Compiler_Singlton_Default.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

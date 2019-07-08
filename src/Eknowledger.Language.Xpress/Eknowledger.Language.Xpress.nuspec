@@ -1,0 +1,22 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>XPress</id>
+    <version>$version$</version>
+    <authors>Ahmed Elmalt</authors>
+    <owners>Ahmed Elmalt</owners>
+	<licenseUrl>https://raw.githubusercontent.com/eknowledger/XPress/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/eknowledger/XPress</projectUrl>
+	<iconUrl>https://github.com/eknowledger/XPress/blob/master/XPress_256.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Simple boolean expression language for .net strings</description>
+	<tags>xpress dsl language languages validation expressionengine expression expression-tree expression-parser</tags>
+    <copyright>Copyright © 2019 eknowledger, Ahmed Elmalt. All rights reserved.</copyright>
+	<dependencies>
+		<dependency id="Irony" version="0.9.1"/>
+	</dependencies>
+  </metadata>
+  <files>
+    <file src="..\README.md" target="" />
+  </files>
+</package>
