@@ -59,6 +59,7 @@
     <Compile Include="XpressRuntimeContext.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Eknowledger.Language.Xpress.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

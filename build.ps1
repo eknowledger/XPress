@@ -22,7 +22,9 @@ Task Default -Depends BuildType-Debug, Compile
 
 Task Debug -Depends BuildType-Debug, Clean, Restore, Compile, Test
 
-Task Release -Depends BuildType-Release, Clean, Restore, Compile, Test, Pack
+Task Debug-Cover -Depends BuildType-Debug, Clean, Restore, Compile, Enable-Coverage, Test
+
+Task Release -Depends BuildType-Release, Clean, Restore, Compile, Enable-Coverage, Test, Pack
 
 ## ----------------------------------------------------------------------------------------------------
 ##   Core Tasks 
@@ -60,7 +62,7 @@ Task Compile -Depends Init, GenerateVersionInfo {
 Task Test -Depends Compile {
 
 	# Find all tests assemblies
-	$testAssemblies = Get-ChildItem -Path $buildDir\*.Tests\$buildType\*.Tests.dll
+	$testAssemblies = Get-ChildItem -Path $buildDir\*.Test\$buildType\*.Test.dll
 
 	foreach($testAssembly in $testAssemblies){
 		Write-Header $testAssembly.Name
@@ -77,6 +79,15 @@ Task Test -Depends Compile {
 
 		pushd $testProject.Directory.FullName
 		exec { & $xunitExe $testAssembly -html $htmlReportPath -Xml $xmlReportPath }
+
+		if($enableCoverage -eq $true) {
+			$coverageReportFile = [System.IO.Path]::ChangeExtension($testAssembly.Name, ".coverage.xml")
+			$coverageReportPath = join-path $buildDir $coverageReportFile
+			echo "$openCoverExe -register:user -target:""$xunitExe"" -targetargs:$testAssembly -filter:""+[Eknowledger.Language.Xpress*]* -[Eknowledger.Language.Xpress.Test*]*"" -output:$coverageReportPath"
+
+			exec {& $openCoverExe -register  -target:"$xunitExe" -targetargs:$testAssembly -filter:"+[*]* -[*.Test]*" -output:$coverageReportPath}
+		}
+
 		popd
 	}
 }
@@ -116,6 +127,9 @@ Task Clean {
 		echo "Creating: $buildDir"
         $quiet = mkdir $buildDir 
     }   
+
+	# default Test coverage to False
+	$script:enableCoverage = $false
 }
 
 Task BuildType-Release {
@@ -126,6 +140,10 @@ Task BuildType-Release {
 Task BuildType-Debug {
     $script:buildType = "Debug"
     echo "Build Type = Debug"
+}
+
+Task Enable-Coverage -Depends LocateOpenCover {
+	$script:enableCoverage = $true
 }
 
 Task InitBuildDir {
@@ -182,6 +200,15 @@ Task LocateXUnitConsole {
     }
 
     echo "XUnit: $xunitExe"
+}
+
+Task LocateOpenCover {
+	$script:openCoverExe =
+		resolve-path ".\packages\*\*\OpenCover.Console.exe"
+	if ($openCoverExe -eq $null){
+		throw "Failed to find OpenCover.Console.exe"
+	}
+	echo "OpenCover: $openCoverExe"
 }
 
 Task LocateNuGet { 
