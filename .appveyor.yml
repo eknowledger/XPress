@@ -1,21 +1,41 @@
-version: 1.0.{build}
+version: 1.0.0.{build}
 
-image: Visual Studio 2017
+os: Visual Studio 2017
 
-before_build:
-- nuget restore
-- choco install opencover.portable
-- choco install codecov
+pull_requests:
+  do_not_increment_build_number: true
 
-build:
-  project: Eknowledger.Language.Xpress.sln
-  verbosity: minimal
+nuget:
+  disable_publish_on_pr: true
 
-test:
-  assemblies:
-    only:
-      - Eknowledger.Language.Xpress.Test.dll
+build_script:
+- ps: .\release.ps1
 
-test_script:
-- OpenCover.Console.exe -register:user -target:"C:\Program Files (x86)\Microsoft Visual Studio\2017\community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" -targetargs:".\src\Eknowledger.Language.Xpress.Test\bin\Debug\Eknowledger.Language.Xpress.Test.dll" -filter:"+[Eknowledger.Language.Xpress*]* -[Eknowledger.Language.Xpress.Test*]*" -output:".\XPress_coverage.xml"
-- codecov -f "XPress_coverage.xml"
+artifacts:
+- path: .\build\Packages\*.nupkg
+  name: NuGet
+
+deploy:
+- provider: NuGet
+  name: production
+  api_key:
+    secure: jSR2vFuKiW2kycU/tdAsaT6lPf1uk8Bn2D/K3pWY5ZIHn/JNXvNOHwRp00Yfb7zB
+  on:
+    branch: master
+    appveyor_repo_tag: true
+
+- provider: NuGet
+  name: PreRelease
+  server: https://ci.appveyor.com/nuget/eknowledger
+  api_key:
+    secure: CNHgfJDRHjWAeAcL3WWpY9DpgEQLfYi9w1w0FoT7+Qc=
+  skip_symbols: false
+  on:
+     branch: master
+
+# use codecov python package. Requires python to be available, which it is on AppVeyor machine image, and then we have to install the codecov package
+#after_test:
+#- "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+#- pip install codecov
+#- codecov -f "XPress_coverage.xml"
+
