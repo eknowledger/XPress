@@ -83,9 +83,8 @@ Task Test -Depends Compile {
 		if($enableCoverage -eq $true) {
 			$coverageReportFile = [System.IO.Path]::ChangeExtension($testAssembly.Name, ".coverage.xml")
 			$coverageReportPath = join-path $buildDir $coverageReportFile
-			echo "$openCoverExe -register:user -target:""$xunitExe"" -targetargs:$testAssembly -filter:""+[Eknowledger.Language.Xpress*]* -[Eknowledger.Language.Xpress.Test*]*"" -output:$coverageReportPath"
 
-			exec {& $openCoverExe -register  -target:"$xunitExe" -targetargs:$testAssembly -filter:"+[*]* -[*.Test]*" -output:$coverageReportPath}
+			exec {& $openCoverExe -register  -target:"$xunitExe" -targetargs:"$testAssembly -noshadow" -filter:"+[Eknowledger.Language.Xpress*]* -[*.Test]* -[xUnit.*]*" -output:$coverageReportPath}
 		}
 
 		popd
