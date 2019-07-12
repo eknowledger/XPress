@@ -1,4 +1,4 @@
-![XPress Logo](/XPress1.png)
+![XPress Logo](/XPress_logo.png)
 # XPress
 Simple boolean expression language
 
