@@ -143,6 +143,7 @@ Task BuildType-Debug {
 
 Task Enable-Coverage -Depends LocateOpenCover {
 	$script:enableCoverage = $true
+	echo "Test Coverage = $enableCoverage"
 }
 
 Task InitBuildDir {
