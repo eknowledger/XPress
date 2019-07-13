@@ -43,13 +43,16 @@ Download and Install **Visual Studio 2017** Community/Professional/Enterprise Ed
 ### How do I get source code?
 - Clone **XPress** source Code to your local dev box
 ```bash
-git clone https://github.com/eknowledger/XPress.git
+git clone --recursive https://github.com/eknowledger/XPress.git
 ```
 - Open [Eknowledger.Language.Xpress](https://github.com/eknowledger/XPress/blob/master/Eknowledger.Language.Xpress.sln) solution in Visual Studio
-- Start hacking! 
+- Start hacking!
 - Add Unit Tests.
 - Run Build Scripts locally.
-- Submit a **Pull Request**.
+- Commit your changes
+- Submit a **Pull Request** and i will try to review your changes as oon as possible.
+
+> If you'd like to contribute but don't have any particular features in mind to work on, check out [issue tracker](https://github.com/eknowledger/XPress/issues) and look for something that might pique your interest!
 
 ### How Do I build solution?
 
@@ -77,8 +80,8 @@ Run `release` script in powershell cmd window with admin privilages.
 ### How do I Run Tests?
 [Eknowledger.Language.Xpress.Test](/src/Eknowledger.Language.Xpress.Test/) contains extended list of unit tests covering many cases of **XPress** expressions. You can run unit tests using Visual Studio test explorer, or in command line using `debug.ps1` script
 
-### What should I do if I found an issue?
-Please file a new issue with details and code sample in [issues](https://github.com/eknowledger/XPress/issues). Or you can always roll up your sleeves and [contribute](https://github.com/eknowledger/XPress#how-can-i-contribute) a fix!
+### How do i report a bug or a feature request?
+[Open a new issue](https://github.com/eknowledger/XPress/issues). Provide details and code samples. Before opening a new issue, please search for existing issues to avoid submitting duplicates. You can always roll up your sleeves and [contribute](https://github.com/eknowledger/XPress#how-can-i-contribute) a fix!
 
 ## Built With
 - [Irony](https://github.com/IronyProject/) - .NET Language Implementation Kit
@@ -91,7 +94,7 @@ Please file a new issue with details and code sample in [issues](https://github.
 
 
 ## Versioning
-We use [SemVer](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/eknowledger/XPress/tags).
+_XPress_ uses [SemVer](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/eknowledger/XPress/tags).
 
 ## License
 XPress is Copyright &copy; 2019 [Ahmed Elmalt](http://www.eknowledger.com/) under the [MIT license](https://raw.githubusercontent.com/eknowledger/XPress/master/LICENSE).
