@@ -25,7 +25,7 @@ var result = compilationResult.Code(runtimeCtx);
 
 ```
 
-More examples in the [wiki](https://github.com/eknowledger/XPress/wiki).
+>More examples in the [wiki](https://github.com/eknowledger/XPress/wiki).
 
 ### Where can I get it?
 
