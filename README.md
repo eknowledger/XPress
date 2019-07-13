@@ -37,42 +37,48 @@ PM> Install-Package XPress
 
 ## How can I contribute?
 
-### Prerequisites
-Download and Install Visual Studio 2017 Community Edition, and .Net 4.7  or higher.
+### What do I need?
+Download and Install **Visual Studio 2017** Community/Professional/Enterprise Edition, and **.Net 4.7**  or higher.
 
-### Get Source Code
-- Clone `XPress` source Code to your local dev box
-- Open `Eknowledger.Language.Xpress` solution in Visual Studio
+### How do I get source code?
+- Clone **XPress** source Code to your local dev box
+```bash
+git clone https://github.com/eknowledger/XPress.git
+```
+- Open [Eknowledger.Language.Xpress](https://github.com/eknowledger/XPress/blob/master/Eknowledger.Language.Xpress.sln) solution in Visual Studio
 - Start hacking! 
-- Add Unit Tests
-- Run Build Scripts locally
-- Submit a `pull request`
+- Add Unit Tests.
+- Run Build Scripts locally.
+- Submit a **Pull Request**.
 
-### How Do I Build Solution?
+### How Do I build solution?
 
 #### Debug Build
-Run `debug` script in powershell cmd window with admin privilages, to compile and run unit tests without code coverage report or packaging
+Run `debug` script in powershell cmd window with admin privilages, to compile and run unit tests without code coverage report or packaging.
 
-``` powershell
+```powershell
 .\debug.ps1
 ``` 
 
 #### Debug Build with Coverage
-Run `debug-cover` script in powershell cmd window with admin privilages, to compile and run unit tests with code coverage report
+Run `debug-cover` script in powershell cmd window with admin privilages, to compile and run unit tests with code coverage report.
 
-``` powershell
+```powershell
 .\debug-cover.ps1
 ```
 
 #### Release Build
-Run following `release` script in powershell cmd window with admin privilages
+Run `release` script in powershell cmd window with admin privilages.
 
-``` powershell
+```powershell
 .\release.ps1
 ```
 
 ### How do I Run Tests?
 [Eknowledger.Language.Xpress.Test](/src/Eknowledger.Language.Xpress.Test/) contains extended list of unit tests covering many cases of **XPress** expressions. You can run unit tests using Visual Studio test explorer, or in command line using `debug.ps1` script
+
+### What should I do if I found an issue?
+Please file a new issue with details and code sample in [issues](https://github.com/eknowledger/XPress/issues). Or you can always roll up your sleeves and [contribute](https://github.com/eknowledger/XPress#how-can-i-contribute) a fix!
 
 ## Built With
 - [Irony](https://github.com/IronyProject/) - .NET Language Implementation Kit
