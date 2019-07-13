@@ -84,7 +84,11 @@ Please file a new issue with details and code sample in [issues](https://github.
 - [Irony](https://github.com/IronyProject/) - .NET Language Implementation Kit
 - [xUnit](https://github.com/xunit/xunit) - Unit testing Framework
 - [psake](https://github.com/psake/psake) - build automation tool
-- [Appveyor](https://ci.appveyor.com/project/eknowledger/xpress) - CI
+- [OpenCover](https://github.com/OpenCover/opencover) - Code Coverage Anlaysis Framework
+- [Appveyor](https://ci.appveyor.com/project/eknowledger/xpress) - Build and Continious Integration
+- [Codecov](https://codecov.io/gh/eknowledger/XPress) - Code Coverage Reporting Tool
+
+
 
 ## Versioning
 We use [SemVer](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/eknowledger/XPress/tags).
