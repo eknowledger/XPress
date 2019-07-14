@@ -1,4 +1,4 @@
-# ====================================================================================================
+﻿# ====================================================================================================
 # PSake build script
 # Author: Ahmed Elmalt
 # Inspired by: https://github.com/theunrepentantgeek/Niche.CommandLineProcessor/blob/master/build.ps1
@@ -18,7 +18,7 @@ properties {
 ##	 Top level targets used to run builds
 ## ----------------------------------------------------------------------------------------------------
 
-Task Default -Depends BuildType-Debug, Compile
+Task Default -Depends BuildType-Debug, Clean, Restore, Compile
 
 Task Debug -Depends BuildType-Debug, Clean, Restore, Compile, Test
 
@@ -98,12 +98,12 @@ Task Pack -Depends Compile{
 		$Name = $nuspecFile.Name
 		Write-Header $Name
 
-		$packageVersion = "$version.$patchVersion"
+		$packageVersion = "$version"
 		$projectFile = [System.IO.Path]::ChangeExtension($nuspecFile, ".csproj")
 		echo $projectFile
 
 		exec{
-			 & $nugetExe pack $projectFile -version $packageVersion -outputdirectory $packagesFolder -basePath $buildDir -Suffix $suffixVersion -Build -IncludeReferencedProjects -properties Configuration=$buildType
+			 & $nugetExe pack $projectFile -version $packageVersion -outputdirectory $packagesFolder -basePath $buildDir -Build -IncludeReferencedProjects -properties Configuration=$buildType
 		}
 	}
 }
@@ -116,7 +116,6 @@ Task Pack -Depends Compile{
 Task Init -Depends InitBuildDir, InitPackagesDir, ConfirmBuildType, LocateMSBuild, LocateXUnitConsole, LocateNuGet
 
 Task Clean {
-
 	if (test-path $buildDir) { echo "Locating: $buildDir" }
 
 	echo "Removing: $buildDir"

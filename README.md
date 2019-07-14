@@ -1,6 +1,6 @@
 ![XPress Logo](/XPress_logo.png)
 # XPress
-**XPress** is a simple yet powerful expression language for .net string literals. Make string truth expressions in compile time using `binary`, `unary`, `relational`, and `conditional` operators. _XPress_ compiles expressions into an optimized `Func<XpressRuntimeContext, bool>` where it can be evaluated in runtime using variable values. _XPress_ supports `numerical`, `text`, `boolean`, `null`, and `variable` operands.
+**XPress** is a simple yet powerful expression language for .net string literals. Make string truth expressions in compile time using `binary`, `unary`, `relational`, and `conditional` operators. _XPress_ compiles expressions into an optimized predicate where it can be evaluated in runtime using variable values. _XPress_ supports `numerical`, `text`, `boolean`, `null`, and `variable` operands.
 
 
 [![Build status](https://ci.appveyor.com/api/projects/status/pw0v9jpcq7sxyxol?svg=true)](https://ci.appveyor.com/project/eknowledger/xpress) [![codecov](https://codecov.io/gh/eknowledger/XPress/branch/master/graph/badge.svg)](https://codecov.io/gh/eknowledger/XPress) [![NuGet](https://img.shields.io/nuget/dt/XPress.svg)](https://www.nuget.org/packages/XPress) [![NuGet](https://img.shields.io/nuget/v/XPress.svg?color=blue)](https://www.nuget.org/packages/XPress) [![License](https://img.shields.io/github/license/eknowledger/XPress.svg)](https://raw.githubusercontent.com/eknowledger/XPress/master/LICENSE) 
@@ -56,22 +56,30 @@ git clone --recursive https://github.com/eknowledger/XPress.git
 
 ### How Do I build solution?
 
-#### Debug Build
-Run `debug` script in powershell cmd window with admin privilages, to compile and run unit tests without code coverage report or packaging.
+#### Command Line
+Run `build.bat` in command line window, then choose build type:
+- **R**: Build Release
+- **T**: Build Debug & Run Test Coverage
+- **D or any other key**: Build Debug
+
+```bash
+build
+``` 
+
+#### Powershell Scripts
+Run `debug` script in powershell command line window with admin privilages, to compile and run unit tests without code coverage report or packaging.
 
 ```powershell
 .\debug.ps1
 ``` 
 
-#### Debug Build with Coverage
-Run `debug-cover` script in powershell cmd window with admin privilages, to compile and run unit tests with code coverage report.
+Run `debug-cover` script in powershell command line window with admin privilages, to compile and run unit tests with code coverage report.
 
 ```powershell
 .\debug-cover.ps1
 ```
 
-#### Release Build
-Run `release` script in powershell cmd window with admin privilages.
+Run `release` script in powershell command line window with admin privilages.
 
 ```powershell
 .\release.ps1
@@ -97,4 +105,4 @@ Run `release` script in powershell cmd window with admin privilages.
 _XPress_ uses [SemVer](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/eknowledger/XPress/tags).
 
 ## License
-XPress is Copyright &copy; 2019 [Ahmed Elmalt](http://www.eknowledger.com/) under the [MIT license](https://raw.githubusercontent.com/eknowledger/XPress/master/LICENSE).
+XPress is Copyright &copy; 2019 [Ahmed Elmalt](http://www.eknowledger.com/) under [MIT license](https://raw.githubusercontent.com/eknowledger/XPress/master/LICENSE).

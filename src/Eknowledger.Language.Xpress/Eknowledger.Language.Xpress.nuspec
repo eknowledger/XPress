@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/eknowledger/XPress</projectUrl>
 	<iconUrl>https://raw.githubusercontent.com/eknowledger/XPress/master/XPress_256.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Simple boolean expression language for .net strings</description>
+    <description>A simple yet powerful expression language for .net string literals. Make string truth expressions in compile time using binary, unary, relational, and conditional operators. XPress compiles expressions into an optimized predicate where it can be evaluated in runtime using variable values. XPress supports numerical, text, boolea`, null, and variable operands.</description>
 	<tags>xpress dsl language languages validation expressionengine expression expression-tree expression-parser</tags>
     <copyright>Copyright © 2019 eknowledger, Ahmed Elmalt. All rights reserved.</copyright>
 	<dependencies>
@@ -18,5 +18,6 @@
   </metadata>
   <files>
     <file src="..\README.md" target="" />
+    <file src="..\CHANGELOG.md" target="" />
   </files>
 </package>
