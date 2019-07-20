@@ -1,6 +1,6 @@
 ![XPress Logo](/XPress_logo.png)
 # XPress
-**XPress** is a simple yet powerful expression language for .net string literals. Make string truth expressions in compile time using `binary`, `unary`, `relational`, and `conditional` operators. _XPress_ compiles expressions into an optimized predicate where it can be evaluated in runtime using variable values. _XPress_ supports `numerical`, `text`, `boolean`, `null`, and `variable` operands.
+**XPress** is a simple yet powerful expression language for .net string literals. Using _XPress_ compiler you can create string truth expressions at compile time using `binary`, `unary`, `relational`, and `conditional` operators. _XPress_ compiles expressions into an optimized cacheable predicates that can be evaluated at runtime by binding variable to runtime values. _XPress_ supports `numerical`, `text`, `boolean`, `null`, and `variable` operands.
 
 
 [![Build status](https://ci.appveyor.com/api/projects/status/pw0v9jpcq7sxyxol?svg=true)](https://ci.appveyor.com/project/eknowledger/xpress) [![codecov](https://codecov.io/gh/eknowledger/XPress/branch/master/graph/badge.svg)](https://codecov.io/gh/eknowledger/XPress) [![NuGet](https://img.shields.io/nuget/dt/XPress.svg)](https://www.nuget.org/packages/XPress) [![NuGet](https://img.shields.io/nuget/v/XPress.svg?color=blue)](https://www.nuget.org/packages/XPress) [![License](https://img.shields.io/github/license/eknowledger/XPress.svg)](https://raw.githubusercontent.com/eknowledger/XPress/master/LICENSE) 
